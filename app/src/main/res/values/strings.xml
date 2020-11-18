@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Project POC</string>
+    <string name="please_enter_your_email">Please enter your email </string>
+    <string name="email">EMAIL</string>
+    <string name="login">LOGIN</string>
+    <string name="welcome">Welcome</string>
+    <string name="emailErrorMessage">Email field cannot be empty</string>
+    <string name="invalidEmail">Email id is not valid.</string>
+    <string name="emailNotFound">Email id not found.</string>
+</resources>

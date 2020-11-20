@@ -7,4 +7,5 @@
     <string name="emailErrorMessage">Email field cannot be empty</string>
     <string name="invalidEmail">Email id is not valid.</string>
     <string name="emailNotFound">Email id not found.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

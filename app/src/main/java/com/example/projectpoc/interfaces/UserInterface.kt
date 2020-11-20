@@ -9,13 +9,15 @@ interface UserInterface {
 
     }
     interface UserView{
-        fun isEmailValid(emailId: String):Boolean
+        fun displayEmptyMessage(emptyMessage : String)
+        fun setEditTextNull()
+        fun displayInvalidMessage(invalidMessage:String)
         fun handleSuccess(users: List<User>)
         fun showFailureMessage(t:Throwable)
         fun showResponseCode(responseCode: Int)
     }
     interface UserPresenter{
-        fun networkcall(emailId : String)
+        fun networkCallForUser(emailId : String)
         fun validateEmail(emailId:String):Boolean
         fun handleSuccessResponse(users: List<User>)
         fun handleFailure(t: Throwable)

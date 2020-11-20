@@ -1,4 +1,4 @@
-package com.example.projectpoc.model.api
+package com.example.projectpoc.model.retrofit
 
 import com.example.projectpoc.interfaces.Constant
 import com.google.gson.GsonBuilder

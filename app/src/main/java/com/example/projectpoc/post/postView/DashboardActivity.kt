@@ -1,4 +1,4 @@
-package com.example.projectpoc.view
+package com.example.projectpoc.post.postView
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectpoc.R
+import com.example.projectpoc.post.postView.PostFragment
 import com.example.projectpoc.sessionManager.UserSessionManager
 
 class DashboardActivity : AppCompatActivity() {

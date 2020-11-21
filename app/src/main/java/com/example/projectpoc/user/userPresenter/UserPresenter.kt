@@ -1,13 +1,13 @@
-package com.example.projectpoc.presenter
+package com.example.projectpoc.user.userPresenter
 
 import android.content.Context
 import com.example.projectpoc.interfaces.Constant
-import com.example.projectpoc.interfaces.UserInterface
-import com.example.projectpoc.model.dataModel.User
-import com.example.projectpoc.model.repose.UserRepose
+import com.example.projectpoc.user.userContract.UserInterface
+import com.example.projectpoc.user.userModel.User
+import com.example.projectpoc.user.userModel.UserRepose
 import com.example.projectpoc.sessionManager.UserSessionManager
 
-class UserPresenter(var context: Context,userView: UserInterface.UserView):UserInterface.UserPresenter {
+class UserPresenter(var context: Context,userView: UserInterface.UserView): UserInterface.UserPresenter {
 
     private var view: UserInterface.UserView = userView
     private var model : UserInterface.UserModel = UserRepose()
@@ -30,7 +30,7 @@ class UserPresenter(var context: Context,userView: UserInterface.UserView):UserI
         return isValid
     }
 
-    override fun handleSuccessResponse(users: List<User>,emailId: String) {
+    override fun handleSuccessResponse(users: List<User>, emailId: String) {
         userSessionManager = UserSessionManager(context)
         var userId = 0
         for (i: Int in users.indices)

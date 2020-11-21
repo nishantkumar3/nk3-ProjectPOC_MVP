@@ -1,9 +1,8 @@
-package com.example.projectpoc.model.repose
+package com.example.projectpoc.user.userModel
 
-import com.example.projectpoc.interfaces.UserInterface
+import com.example.projectpoc.user.userContract.UserInterface
 import com.example.projectpoc.model.retrofit.RetrofitClient
 import com.example.projectpoc.model.retrofit.RetrofitInterface
-import com.example.projectpoc.model.dataModel.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

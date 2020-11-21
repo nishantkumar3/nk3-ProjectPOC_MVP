@@ -1,6 +1,6 @@
-package com.example.projectpoc.interfaces
+package com.example.projectpoc.comment.commentContract
 
-import com.example.projectpoc.model.dataModel.Comment
+import com.example.projectpoc.comment.commentModel.Comment
 
 interface CommentInterface {
     interface CommentVIew{

@@ -1,4 +1,4 @@
-package com.example.projectpoc.view
+package com.example.projectpoc.comment.commentView
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
-import com.example.projectpoc.adapter.CommentAdapter
-import com.example.projectpoc.interfaces.CommentInterface
-import com.example.projectpoc.model.dataModel.Comment
-import com.example.projectpoc.presenter.CommentPresenter
+import com.example.projectpoc.comment.commentAdapter.CommentAdapter
+import com.example.projectpoc.comment.commentContract.CommentInterface
+import com.example.projectpoc.comment.commentModel.Comment
+import com.example.projectpoc.comment.commentPresenter.CommentPresenter
 
 
-class CommentFragment : Fragment(),CommentInterface.CommentVIew {
+class CommentFragment : Fragment(), CommentInterface.CommentVIew {
 
     private var presenter : CommentPresenter?=null
     private lateinit var recyclerView: RecyclerView

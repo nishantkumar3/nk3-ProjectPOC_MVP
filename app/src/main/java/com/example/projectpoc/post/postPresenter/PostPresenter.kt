@@ -1,10 +1,10 @@
-package com.example.projectpoc.presenter
+package com.example.projectpoc.post.postPresenter
 
-import com.example.projectpoc.interfaces.PostInterface
-import com.example.projectpoc.model.dataModel.Post
-import com.example.projectpoc.model.repose.PostRepose
+import com.example.projectpoc.post.postContract.PostInterface
+import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.post.postModel.PostRepose
 
-class PostPresenter(postView: PostInterface.PostDataView):PostInterface.PostPresenter {
+class PostPresenter(postView: PostInterface.PostDataView): PostInterface.PostPresenter {
 
     private val view : PostInterface.PostDataView = postView
     private val model: PostInterface.PostModel = PostRepose()

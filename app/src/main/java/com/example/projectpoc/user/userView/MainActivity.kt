@@ -1,4 +1,4 @@
-package com.example.projectpoc.view
+package com.example.projectpoc.user.userView
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectpoc.R
-import com.example.projectpoc.interfaces.UserInterface
-import com.example.projectpoc.presenter.UserPresenter
+import com.example.projectpoc.user.userContract.UserInterface
+import com.example.projectpoc.user.userPresenter.UserPresenter
 import com.example.projectpoc.sessionManager.UserSessionManager
+import com.example.projectpoc.post.postView.DashboardActivity
 import com.google.android.material.textfield.TextInputLayout
 
  class MainActivity : AppCompatActivity(), UserInterface.UserView {
@@ -25,7 +26,7 @@ import com.google.android.material.textfield.TextInputLayout
         userSessionManager = UserSessionManager(applicationContext)
 
         if(userSessionManager.isLoggedIn()){
-            val intent = Intent(this,DashboardActivity::class.java)
+            val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
             finish()
         }

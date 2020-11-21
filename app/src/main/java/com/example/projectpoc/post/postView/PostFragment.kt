@@ -1,4 +1,4 @@
-package com.example.projectpoc.view
+package com.example.projectpoc.post.postView
 
 import android.os.Bundle
 import android.util.Log
@@ -10,15 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
-import com.example.projectpoc.adapter.PostAdapter
-import com.example.projectpoc.clickListener.PostCellClickListener
-import com.example.projectpoc.interfaces.PostInterface
-import com.example.projectpoc.model.dataModel.Post
-import com.example.projectpoc.presenter.PostPresenter
+import com.example.projectpoc.post.postAdapter.PostAdapter
+import com.example.projectpoc.post.postCellClickListener.PostCellClickListener
+import com.example.projectpoc.post.postContract.PostInterface
+import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.post.postPresenter.PostPresenter
 import com.example.projectpoc.sessionManager.UserSessionManager
+import com.example.projectpoc.comment.commentView.CommentFragment
 
 
-class PostFragment : Fragment(),PostInterface.PostDataView,PostCellClickListener {
+class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListener {
 
     private var presenter : PostPresenter?= null
     private lateinit var recyclerView: RecyclerView

@@ -1,6 +1,6 @@
-package com.example.projectpoc.interfaces
+package com.example.projectpoc.post.postContract
 
-import com.example.projectpoc.model.dataModel.Post
+import com.example.projectpoc.post.postModel.Post
 
 interface PostInterface {
     interface PostDataView {

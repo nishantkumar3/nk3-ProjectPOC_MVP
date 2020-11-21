@@ -1,4 +1,4 @@
-package com.example.projectpoc.model.dataModel
+package com.example.projectpoc.user.userModel
 
 data class User (
     val id: Int,

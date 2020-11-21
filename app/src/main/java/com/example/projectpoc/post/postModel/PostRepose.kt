@@ -1,9 +1,8 @@
-package com.example.projectpoc.model.repose
+package com.example.projectpoc.post.postModel
 
-import com.example.projectpoc.interfaces.PostInterface
+import com.example.projectpoc.post.postContract.PostInterface
 import com.example.projectpoc.model.retrofit.RetrofitClient
 import com.example.projectpoc.model.retrofit.RetrofitInterface
-import com.example.projectpoc.model.dataModel.Post
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

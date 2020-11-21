@@ -1,14 +1,13 @@
-package com.example.projectpoc.model.repose
+package com.example.projectpoc.comment.commentModel
 
-import com.example.projectpoc.interfaces.CommentInterface
+import com.example.projectpoc.comment.commentContract.CommentInterface
 import com.example.projectpoc.model.retrofit.RetrofitClient
 import com.example.projectpoc.model.retrofit.RetrofitInterface
-import com.example.projectpoc.model.dataModel.Comment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CommentRepose:CommentInterface.CommentModel {
+class CommentRepose: CommentInterface.CommentModel {
     private val retrofitInterface:RetrofitInterface = RetrofitClient.getRetrofit().create(RetrofitInterface::class.java)
 
     override fun getCommentList(postId: Int?, commentPresenter: CommentInterface.CommentPresenter) {

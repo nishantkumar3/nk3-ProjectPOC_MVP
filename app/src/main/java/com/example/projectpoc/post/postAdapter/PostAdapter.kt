@@ -1,4 +1,4 @@
-package com.example.projectpoc.adapter
+package com.example.projectpoc.post.postAdapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
-import com.example.projectpoc.clickListener.PostCellClickListener
-import com.example.projectpoc.model.dataModel.Post
+import com.example.projectpoc.post.postCellClickListener.PostCellClickListener
+import com.example.projectpoc.post.postModel.Post
 
-class PostAdapter(private val posts:List<Post>,private val postCellClickListener: PostCellClickListener):RecyclerView.Adapter<PostAdapter.PostViewHolder> (){
+class PostAdapter(private val posts:List<Post>, private val postCellClickListener: PostCellClickListener):RecyclerView.Adapter<PostAdapter.PostViewHolder> (){
     class PostViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         val id: TextView = itemView.findViewById(R.id.postId)
         val title: TextView = itemView.findViewById(R.id.postTitle)

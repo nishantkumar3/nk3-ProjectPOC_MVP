@@ -1,6 +1,6 @@
-package com.example.projectpoc.interfaces
+package com.example.projectpoc.user.userContract
 
-import com.example.projectpoc.model.dataModel.User
+import com.example.projectpoc.user.userModel.User
 
 interface UserInterface {
     interface UserModel {

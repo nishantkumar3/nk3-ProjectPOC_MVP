@@ -1,8 +1,8 @@
 package com.example.projectpoc.model.retrofit
 
-import com.example.projectpoc.model.dataModel.Comment
-import com.example.projectpoc.model.dataModel.Post
-import com.example.projectpoc.model.dataModel.User
+import com.example.projectpoc.comment.commentModel.Comment
+import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.user.userModel.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

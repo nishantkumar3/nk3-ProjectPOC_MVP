@@ -1,16 +1,17 @@
 package com.example.projectpoc.presenter
 
-import android.provider.Settings.Global.getString
-import com.example.projectpoc.R
+import android.content.Context
 import com.example.projectpoc.interfaces.Constant
 import com.example.projectpoc.interfaces.UserInterface
 import com.example.projectpoc.model.dataModel.User
 import com.example.projectpoc.model.repose.UserRepose
+import com.example.projectpoc.sessionManager.UserSessionManager
 
-class UserPresenter(userView: UserInterface.UserView):UserInterface.UserPresenter {
+class UserPresenter(var context: Context,userView: UserInterface.UserView):UserInterface.UserPresenter {
 
     private var view: UserInterface.UserView = userView
     private var model : UserInterface.UserModel = UserRepose()
+    private lateinit var userSessionManager : UserSessionManager
 
     override fun networkCallForUser(emailId : String) {
         model.getUser(emailId,this)
@@ -29,8 +30,23 @@ class UserPresenter(userView: UserInterface.UserView):UserInterface.UserPresente
         return isValid
     }
 
-    override fun handleSuccessResponse(users: List<User>) {
-        view.handleSuccess(users)
+    override fun handleSuccessResponse(users: List<User>,emailId: String) {
+        userSessionManager = UserSessionManager(context)
+        var userId = 0
+        for (i: Int in users.indices)
+            if (users[i].email.equals(emailId, true)) {
+                userId = users[i].id
+            }
+        if (userId != 0) {
+            userSessionManager.createLoginSession(userId)
+            view.openDashBoard()
+//            val intent = Intent(context, DashboardActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            context.startActivity(intent)
+        } else {
+           view.displayEmailNotFoundMessage(Constant.EMAIL_NOT_FOUND)
+        }
     }
 
     override fun handleFailure(t: Throwable) {

@@ -1,6 +1,7 @@
 package com.example.projectpoc.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -14,10 +15,10 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
-
+        Log.d("nish","in DashboardActivity")
         userSessionManager=UserSessionManager(this)
 
-        val userId : Int = intent.getIntExtra("USER_ID",0)
+      //  val userId : Int = intent.getIntExtra("USER_ID",0)
        // Toast.makeText(this,userId.toString() , Toast.LENGTH_SHORT).show()
 
 
@@ -28,9 +29,9 @@ class DashboardActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
 
-        val userBundle = Bundle()
-        userBundle.putInt("USER_ID",userId)
-        fragment.arguments = userBundle
+//        val userBundle = Bundle()
+//        userBundle.putInt("USER_ID",userId)
+//        fragment.arguments = userBundle
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater

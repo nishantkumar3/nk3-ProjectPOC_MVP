@@ -2,11 +2,11 @@ package com.example.projectpoc.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
@@ -28,14 +28,14 @@ class PostFragment : Fragment(),PostInterface.PostDataView,PostCellClickListener
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ):View? {
-
+        Log.d("nish","In postFragment")
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_post, container, false)
         recyclerView = view.findViewById(R.id.postRecyclerView)
         userSessionManager= UserSessionManager(activity?.applicationContext!!)
-       // val userId: Int? = arguments?.getInt("USER_ID")
-       // Toast.makeText(context, userId.toString(), Toast.LENGTH_SHORT).show()
+
         val userId: Int= userSessionManager.getUserDetails()
+
         presenter = PostPresenter(this)
         presenter?.networkCallForPost(userId)
         return view

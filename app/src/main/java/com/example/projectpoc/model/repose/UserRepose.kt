@@ -22,7 +22,7 @@ class UserRepose: UserInterface.UserModel {
                     presenter.responseNotSuccessful(response.code())
                     return
                 }
-                response.body()?.let { presenter.handleSuccessResponse(it) }
+                response.body()?.let { presenter.handleSuccessResponse(it,emailId) }
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {

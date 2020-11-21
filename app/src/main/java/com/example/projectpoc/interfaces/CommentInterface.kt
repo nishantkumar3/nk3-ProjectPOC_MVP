@@ -1,7 +1,6 @@
 package com.example.projectpoc.interfaces
 
 import com.example.projectpoc.model.dataModel.Comment
-import com.example.projectpoc.model.dataModel.Post
 
 interface CommentInterface {
     interface CommentVIew{

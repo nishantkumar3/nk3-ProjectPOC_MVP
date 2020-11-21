@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.example.projectpoc.view.DashboardActivity
 import com.example.projectpoc.view.MainActivity
 
-class UserSessionManager(var context:Context) {
+class UserSessionManager(var context: Context) {
     private var pref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private var PRIVATE_MODE: Int = 0

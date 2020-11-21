@@ -18,7 +18,7 @@ import com.example.projectpoc.presenter.CommentPresenter
 class CommentFragment : Fragment(),CommentInterface.CommentVIew {
 
     private var presenter : CommentPresenter?=null
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

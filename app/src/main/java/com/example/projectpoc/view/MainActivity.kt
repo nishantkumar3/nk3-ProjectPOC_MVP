@@ -7,12 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectpoc.R
 import com.example.projectpoc.interfaces.UserInterface
-import com.example.projectpoc.model.dataModel.User
 import com.example.projectpoc.presenter.UserPresenter
 import com.example.projectpoc.sessionManager.UserSessionManager
 import com.google.android.material.textfield.TextInputLayout
 
-class MainActivity : AppCompatActivity(), UserInterface.UserView {
+ class MainActivity : AppCompatActivity(), UserInterface.UserView {
     private var presenter: UserPresenter? = null
     private lateinit var loginButton: Button
     private lateinit var inputEmail: TextInputLayout
@@ -22,11 +21,15 @@ class MainActivity : AppCompatActivity(), UserInterface.UserView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = UserPresenter(this)
+        presenter = UserPresenter(applicationContext,this)
         userSessionManager = UserSessionManager(applicationContext)
 
-        if(userSessionManager.checkLogin())
+        if(userSessionManager.isLoggedIn()){
+            val intent = Intent(this,DashboardActivity::class.java)
+            startActivity(intent)
             finish()
+        }
+
 
         loginButton = findViewById(R.id.loginButton)
         inputEmail = findViewById(R.id.email)
@@ -52,23 +55,27 @@ class MainActivity : AppCompatActivity(), UserInterface.UserView {
         inputEmail.error = invalidMessage
     }
 
-
-    override fun handleSuccess(users: List<User>) {
-        val emailEntered: String = inputEmail.editText?.text.toString()
-        var userId = 0
-        for (i: Int in users.indices)
-            if (users[i].email.equals(emailEntered, true)) {
-                userId = users[i].id
-            }
-        if (userId != 0) {
-            userSessionManager.createLoginSession(userId)
-            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            inputEmail.error = getString(R.string.emailNotFound)
-        }
+    override fun displayEmailNotFoundMessage(emailNotFound: String) {
+        inputEmail.error = emailNotFound
     }
+
+
+    /* override fun handleSuccess(users: List<User>) {
+         val emailEntered: String = inputEmail.editText?.text.toString()
+         var userId = 0
+         for (i: Int in users.indices)
+             if (users[i].email.equals(emailEntered, true)) {
+                 userId = users[i].id
+             }
+         if (userId != 0) {
+             userSessionManager.createLoginSession(userId)
+             val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+             startActivity(intent)
+             finish()
+         } else {
+             inputEmail.error = getString(R.string.emailNotFound)
+         }
+     }*/
 
     override fun showFailureMessage(t: Throwable) {
         Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()
@@ -78,4 +85,10 @@ class MainActivity : AppCompatActivity(), UserInterface.UserView {
     override fun showResponseCode(responseCode: Int) {
         Toast.makeText(this@MainActivity, """Code : $responseCode""", Toast.LENGTH_SHORT).show()
     }
-}
+
+     override fun openDashBoard() {
+         val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+         startActivity(intent)
+         finish()
+     }
+ }

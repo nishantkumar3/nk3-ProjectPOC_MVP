@@ -1,6 +1,7 @@
 package com.example.projectpoc.comment.commentView
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,8 @@ class CommentFragment : Fragment(), CommentInterface.CommentVIew {
         recyclerView = view.findViewById(R.id.commentRecyclerView)
 
         presenter = CommentPresenter(this)
+
+        Log.d("nish","In comment Fragment")
 
         var postId: Int?= 0
         if(arguments?.getInt("POST_ID")!=null){

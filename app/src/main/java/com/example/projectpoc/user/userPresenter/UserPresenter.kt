@@ -40,10 +40,6 @@ class UserPresenter(var context: Context,userView: UserInterface.UserView): User
         if (userId != 0) {
             userSessionManager.createLoginSession(userId)
             view.openDashBoard()
-//            val intent = Intent(context, DashboardActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            context.startActivity(intent)
         } else {
            view.displayEmailNotFoundMessage(Constant.EMAIL_NOT_FOUND)
         }

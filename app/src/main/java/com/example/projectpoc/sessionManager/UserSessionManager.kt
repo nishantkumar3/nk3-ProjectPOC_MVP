@@ -3,7 +3,6 @@ package com.example.projectpoc.sessionManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.example.projectpoc.post.postView.DashboardActivity
 import com.example.projectpoc.user.userView.MainActivity
 
 class UserSessionManager(var context: Context) {
@@ -30,17 +29,6 @@ class UserSessionManager(var context: Context) {
     }
 
 
-    fun checkLogin():Boolean {
-        if (this.isLoggedIn()) {
-            val intent = Intent(context, DashboardActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(intent)
-            return true
-        }
-        return false
-    }
-
     fun isLoggedIn(): Boolean {
         return pref.getBoolean(IS_LOGIN, false)
     }
@@ -49,15 +37,10 @@ class UserSessionManager(var context: Context) {
         editor = pref.edit()
         editor.clear()
         editor.apply()
-
-        val intent = Intent(context, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context.startActivity(intent)
     }
 
-    fun getUserDetails():Int{
-        return pref.getInt(KEY_USERID,0)
+    fun getUserDetails(): Int {
+        return pref.getInt(KEY_USERID, 0)
     }
 
 }

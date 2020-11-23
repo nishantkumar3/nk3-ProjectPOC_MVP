@@ -1,5 +1,6 @@
 package com.example.projectpoc.post.postView
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListen
     private var presenter : PostPresenter?= null
     private lateinit var recyclerView: RecyclerView
     private lateinit var userSessionManager: UserSessionManager
+    private  val TAG = "PostFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,5 +73,9 @@ class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListen
         fragmentTransaction?.commit()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d(TAG, "onAttach() called with: context = $context")
+    }
 
 }

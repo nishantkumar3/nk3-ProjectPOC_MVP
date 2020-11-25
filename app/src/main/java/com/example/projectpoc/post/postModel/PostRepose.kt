@@ -20,6 +20,7 @@ class PostRepose: PostInterface.PostModel {
                     postPresenter.responseNotSuccessful(response.code())
                     return
                 }
+               // response.body()?.let { postPresenter.savePostToDb(it) }
                 response.body()?.let { postPresenter.handleSuccessResponse(it) }
             }
 

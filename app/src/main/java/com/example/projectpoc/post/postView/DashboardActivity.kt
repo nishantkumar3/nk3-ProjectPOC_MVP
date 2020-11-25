@@ -40,11 +40,9 @@ class DashboardActivity : AppCompatActivity() {
         userSessionManager.logoutUser()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy() called")
-    }
+
 }

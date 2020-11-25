@@ -18,36 +18,48 @@ import com.example.projectpoc.post.postModel.Post
 import com.example.projectpoc.post.postPresenter.PostPresenter
 import com.example.projectpoc.sessionManager.UserSessionManager
 import com.example.projectpoc.comment.commentView.CommentFragment
+import com.example.projectpoc.utility.CheckInternet
 
 
 class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListener {
 
-    private var presenter : PostPresenter?= null
+    private var presenter: PostPresenter? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var userSessionManager: UserSessionManager
-    private  val TAG = "PostFragment"
+    private lateinit var checkInternet: CheckInternet
+    private val TAG = "PostFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ):View? {
-        Log.d("nish","In postFragment")
+    ): View {
+        Log.d("nish", "In postFragment")
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_post, container, false)
         recyclerView = view.findViewById(R.id.postRecyclerView)
-        userSessionManager= UserSessionManager(activity?.applicationContext!!)
+        userSessionManager = UserSessionManager(activity?.applicationContext!!)
 
-        val userId: Int= userSessionManager.getUserDetails()
+        val userId: Int = userSessionManager.getUserDetails()
 
-        presenter = PostPresenter(this)
-        presenter?.networkCallForPost(userId)
+        presenter = PostPresenter(activity?.applicationContext!!, this)
+        checkInternet = CheckInternet(activity?.applicationContext!!)
+
+        if (checkInternet.isConnected()) {
+            presenter?.networkCallForPost(userId)
+        } else {
+            presenter?.loadPostFromDb()
+            Toast.makeText(context, "Mobile data is Off", Toast.LENGTH_SHORT).show()
+        }
+
+
+
         return view
     }
 
 
     override fun handleSuccess(posts: List<Post>) {
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
-        recyclerView.adapter = PostAdapter(posts,this)
+        recyclerView.adapter = PostAdapter(posts, this)
 
     }
 
@@ -64,8 +76,8 @@ class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListen
         val fragmentTransaction = fragmentManager?.beginTransaction()
         val fragment = CommentFragment()
 
-        val bundle= Bundle()
-        bundle.putInt("POST_ID",id)
+        val bundle = Bundle()
+        bundle.putInt("POST_ID", id)
         fragment.arguments = bundle
 
         fragmentTransaction?.replace(R.id.fragment_container, fragment)

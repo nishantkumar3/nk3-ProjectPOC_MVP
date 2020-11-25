@@ -1,5 +1,6 @@
 package com.example.projectpoc.post.postContract
 
+import com.example.projectpoc.post.localDbForPost.PostEntity
 import com.example.projectpoc.post.postModel.Post
 
 interface PostInterface {
@@ -14,9 +15,19 @@ interface PostInterface {
         fun handleSuccessResponse(posts: List<Post>)
         fun handleFailure(t: Throwable)
         fun responseNotSuccessful(responseCode : Int)
+        fun loadPostFromDb()
+        fun handlePostFromDb(posts: List<Post>)
+       // fun savePostToDb(posts: List<Post>)
     }
 
     interface PostModel {
         fun getPostList(userId: Int?,postPresenter: PostPresenter)
+
+    }
+
+    interface LocalDbPost{
+        fun savePost(posts: List<Post>)
+        fun retrievePosts(postPresenter: PostPresenter)
+        fun delData()
     }
 }

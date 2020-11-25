@@ -80,8 +80,5 @@ class MainActivity : AppCompatActivity(), UserInterface.UserView {
         finish()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy() called")
-    }
+
 }

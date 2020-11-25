@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
@@ -44,7 +45,7 @@ class CommentFragment : Fragment(), CommentInterface.CommentVIew {
     }
 
     override fun handleSuccess(comments: List<Comment>) {
-        recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
+        recyclerView.layoutManager = GridLayoutManager(activity?.applicationContext,2)
         recyclerView.adapter = CommentAdapter(comments)
     }
 

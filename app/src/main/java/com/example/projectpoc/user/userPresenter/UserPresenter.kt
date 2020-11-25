@@ -7,28 +7,19 @@ import com.example.projectpoc.user.userModel.User
 import com.example.projectpoc.user.userModel.UserRepose
 import com.example.projectpoc.sessionManager.UserSessionManager
 
-class UserPresenter(var context: Context,userView: UserInterface.UserView): UserInterface.UserPresenter {
+class UserPresenter(var context: Context, userView: UserInterface.UserView) :
+    UserInterface.UserPresenter {
 
     private var view: UserInterface.UserView = userView
-    private var model : UserInterface.UserModel = UserRepose()
-    private lateinit var userSessionManager : UserSessionManager
+    private var model: UserInterface.UserModel = UserRepose()
+    private lateinit var userSessionManager: UserSessionManager
 
-    override fun networkCallForUser(emailId : String) {
-        model.getUser(emailId,this)
+
+    override fun handleLogin(emailId: String) {
+        if (validateEmail(emailId))
+            model.getUser(emailId, this)
     }
 
-    override fun validateEmail(emailId: String):Boolean {
-        var isValid = false
-        if (emailId.isEmpty()) {
-            view.displayEmptyMessage(Constant.EMPTY_MESSAGE)
-        } else if (emailId.matches(Constant.emailPattern.toRegex())) {
-            view.setEditTextNull()
-            isValid = true
-        } else {
-            view.displayInvalidMessage(Constant.INVALID_MESSAGE)
-        }
-        return isValid
-    }
 
     override fun handleSuccessResponse(users: List<User>, emailId: String) {
         userSessionManager = UserSessionManager(context)
@@ -41,7 +32,7 @@ class UserPresenter(var context: Context,userView: UserInterface.UserView): User
             userSessionManager.createLoginSession(userId)
             view.openDashBoard()
         } else {
-           view.displayEmailNotFoundMessage(Constant.EMAIL_NOT_FOUND)
+            view.displayEmailNotFoundMessage(Constant.EMAIL_NOT_FOUND)
         }
     }
 
@@ -53,5 +44,17 @@ class UserPresenter(var context: Context,userView: UserInterface.UserView): User
         view.showResponseCode(responseCode)
     }
 
+    private fun validateEmail(emailId: String): Boolean {
+        var isValid = false
+        when {
+            emailId.isEmpty() -> view.displayEmptyMessage(Constant.EMPTY_MESSAGE)
 
+            emailId.matches(Constant.emailPattern.toRegex()) -> {
+                view.setEditTextNull()
+                isValid = true
+            }
+            else -> view.displayInvalidMessage(Constant.INVALID_MESSAGE)
+        }
+        return isValid
+    }
 }

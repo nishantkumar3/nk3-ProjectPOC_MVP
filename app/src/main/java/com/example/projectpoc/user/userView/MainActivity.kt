@@ -38,12 +38,11 @@ class MainActivity : AppCompatActivity(), UserInterface.UserView {
 
         loginButton = findViewById(R.id.loginButton)
         inputEmail = findViewById(R.id.email)
+
         loginButton.setOnClickListener {
 
             val emailId: String = inputEmail.editText?.text.toString().trim()
-            if (presenter?.validateEmail(emailId)!!) {
-                presenter?.networkCallForUser(emailId)
-            }
+            presenter?.handleLogin(emailId)
         }
 
     }

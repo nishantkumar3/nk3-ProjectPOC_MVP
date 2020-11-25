@@ -1,9 +1,7 @@
 package com.example.projectpoc.sessionManager
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import com.example.projectpoc.user.userView.MainActivity
 
 class UserSessionManager(var context: Context) {
     private var pref: SharedPreferences

@@ -2,7 +2,6 @@ package com.example.projectpoc.post.postView
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -14,12 +13,10 @@ import com.example.projectpoc.user.userView.MainActivity
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var userSessionManager:UserSessionManager
-    private  val TAG = "DashboardActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
-        Log.d("nish","in DashboardActivity")
-        Log.d(TAG, "onCreate() called with: savedInstanceState = $savedInstanceState")
         userSessionManager=UserSessionManager(this)
 
 

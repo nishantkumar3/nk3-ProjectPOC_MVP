@@ -1,8 +1,6 @@
 package com.example.projectpoc.post.postView
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +16,6 @@ import com.example.projectpoc.post.postModel.Post
 import com.example.projectpoc.post.postPresenter.PostPresenter
 import com.example.projectpoc.sessionManager.UserSessionManager
 import com.example.projectpoc.comment.commentView.CommentFragment
-import com.example.projectpoc.utility.CheckInternet
 
 
 class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListener {
@@ -26,33 +23,21 @@ class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListen
     private var presenter: PostPresenter? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var userSessionManager: UserSessionManager
-    private lateinit var checkInternet: CheckInternet
-    private val TAG = "PostFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d("nish", "In postFragment")
+
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_post, container, false)
         recyclerView = view.findViewById(R.id.postRecyclerView)
         userSessionManager = UserSessionManager(activity?.applicationContext!!)
+        presenter = PostPresenter(activity?.applicationContext!!, this)
 
         val userId: Int = userSessionManager.getUserDetails()
 
-        presenter = PostPresenter(activity?.applicationContext!!, this)
-        checkInternet = CheckInternet(activity?.applicationContext!!)
-
-        if (checkInternet.isConnected()) {
-            presenter?.networkCallForPost(userId)
-        } else {
-            presenter?.loadPostFromDb()
-            Toast.makeText(context, "Mobile data is Off", Toast.LENGTH_SHORT).show()
-        }
-
-
-
+          presenter?.getPostData(userId)
         return view
     }
 
@@ -85,9 +70,5 @@ class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListen
         fragmentTransaction?.commit()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d(TAG, "onAttach() called with: context = $context")
-    }
 
 }

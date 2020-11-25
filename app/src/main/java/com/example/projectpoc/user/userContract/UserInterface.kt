@@ -20,8 +20,7 @@ interface UserInterface {
     }
 
     interface UserPresenter {
-        fun networkCallForUser(emailId: String)
-        fun validateEmail(emailId: String): Boolean
+        fun handleLogin(emailId: String)
         fun handleSuccessResponse(users: List<User>, emailId: String)
         fun handleFailure(t: Throwable)
         fun responseNotSuccessful(responseCode: Int)

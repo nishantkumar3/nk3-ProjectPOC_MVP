@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PostRepose: PostInterface.PostModel {
+class PostApi: PostInterface.PostModel {
 
     private val retrofitInterface:RetrofitInterface = RetrofitClient.getRetrofit().create(RetrofitInterface::class.java)
 

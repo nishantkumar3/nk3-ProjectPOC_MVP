@@ -3,10 +3,9 @@ package com.example.projectpoc.user.userContract
 import com.example.projectpoc.user.userModel.User
 
 interface UserInterface {
+
     interface UserModel {
         fun getUser(emailId: String, presenter: UserPresenter)
-
-
     }
 
     interface UserView {

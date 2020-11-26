@@ -1,5 +1,6 @@
 package com.example.projectpoc.post.postView
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +8,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectpoc.R
+import com.example.projectpoc.post.localDbForPost.LocalDbRepose
+import com.example.projectpoc.post.postContract.PostInterface
 import com.example.projectpoc.sessionManager.UserSessionManager
 import com.example.projectpoc.user.userView.MainActivity
 
@@ -14,11 +17,11 @@ class DashboardActivity : AppCompatActivity() {
 
     private lateinit var userSessionManager:UserSessionManager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
         userSessionManager=UserSessionManager(this)
-
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -34,7 +37,9 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val modelLocal: PostInterface.LocalDbPost = LocalDbRepose(application)
         userSessionManager.logoutUser()
+        modelLocal.delData()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

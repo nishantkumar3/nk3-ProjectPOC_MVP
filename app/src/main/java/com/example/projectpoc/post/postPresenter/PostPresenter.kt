@@ -5,16 +5,18 @@ import android.widget.Toast
 import com.example.projectpoc.post.localDbForPost.LocalDbRepose
 import com.example.projectpoc.post.postContract.PostInterface
 import com.example.projectpoc.post.postModel.Post
-import com.example.projectpoc.post.postModel.PostRepose
+import com.example.projectpoc.post.postModel.PostApi
+import com.example.projectpoc.post.postRepository.PostRepository
 import com.example.projectpoc.utility.CheckInternet
 
 class PostPresenter(var context: Context, postView: PostInterface.PostDataView) :
     PostInterface.PostPresenter {
 
     private val view: PostInterface.PostDataView = postView
-    private val model: PostInterface.PostModel = PostRepose()
+    private val model: PostInterface.PostModel = PostApi()
     private val modelLocal: PostInterface.LocalDbPost = LocalDbRepose(context)
     private lateinit var checkInternet: CheckInternet
+    private val postRepository  = PostRepository()
 
 
     override fun getPostData(userId: Int?) {
@@ -22,6 +24,7 @@ class PostPresenter(var context: Context, postView: PostInterface.PostDataView) 
         checkInternet = CheckInternet(context)
 
         if (checkInternet.isConnected()) {
+           // postRepository.fetchDataFromNetwork(userId,this)
             model.getPostList(userId, this)
         } else {
             modelLocal.retrievePosts(this)
@@ -32,7 +35,7 @@ class PostPresenter(var context: Context, postView: PostInterface.PostDataView) 
 
     override fun handleSuccessResponse(posts: List<Post>) {
         view.handleSuccess(posts)
-        modelLocal.delData()
+      //  modelLocal.delData()
         modelLocal.savePost(posts)
     }
 

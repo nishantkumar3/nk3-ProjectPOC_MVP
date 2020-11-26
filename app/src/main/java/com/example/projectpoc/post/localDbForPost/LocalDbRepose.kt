@@ -9,28 +9,29 @@ import com.example.projectpoc.post.postModel.Post
 
 class LocalDbRepose(var context: Context) : PostInterface.LocalDbPost {
 
+    private val db = PostRoomDb.getDatabase(context)
 
     override fun savePost(posts: List<Post>) {
         Log.d("Nishant", "Saving post")
-        InsertData(posts, context as Application).execute()
+        InsertData(posts, context as Application,db).execute()
     }
 
     override fun retrievePosts(postPresenter: PostInterface.PostPresenter) {
         Log.d("Nishant", "Fetching Post from db")
-        FetchData(context as Application, postPresenter).execute()
+         FetchData(context as Application, postPresenter,db).execute()
     }
 
     override fun delData() {
-        DeletePost(context as Application).execute()
+        DeletePost(context as Application,db).execute()
     }
 
-    class InsertData(var posts: List<Post>, var application: Application) :
+    class InsertData(var posts: List<Post>, var application: Application,var db: PostRoomDb) :
         AsyncTask<Void, Void, Void>() {
         override fun doInBackground(vararg params: Void?): Void? {
 
             Log.d("Nishant", "Inserting data")
             val items = ArrayList<PostEntity>()
-            val db = PostRoomDb.getDatabase(application)
+          //  val db = PostRoomDb.getDatabase(application)
 
             for (post in posts) {
                 val item = PostEntity()
@@ -48,11 +49,11 @@ class LocalDbRepose(var context: Context) : PostInterface.LocalDbPost {
 
     }
 
-    class FetchData(var application: Application, var postPresenter: PostInterface.PostPresenter) :
-        AsyncTask<Void, Void, Void>() {
-        override fun doInBackground(vararg params: Void?): Void? {
+    class FetchData(var application: Application, var postPresenter: PostInterface.PostPresenter,var db: PostRoomDb) :
+        AsyncTask<Void, Void, List<Post>>(){
+        override fun doInBackground(vararg params: Void?): List<Post> {
             val postsFromDb: List<PostEntity>?
-            val db = PostRoomDb.getDatabase(application)
+          //  val db = PostRoomDb.getDatabase(application)
             postsFromDb = db.postDao().fetchAllPosts()
 
             val items = ArrayList<Post>()
@@ -61,15 +62,21 @@ class LocalDbRepose(var context: Context) : PostInterface.LocalDbPost {
 
                 items.add(item)
             }
-            postPresenter.handlePostFromDb(items)
-            return null
+            return items
+        }
+
+        override fun onPostExecute(result: List<Post>?) {
+            if (result != null) {
+                postPresenter.handlePostFromDb(result)
+            }
+
         }
     }
 
-    class DeletePost(var application: Application) : AsyncTask<Void, Void, Void>() {
+    class DeletePost(var application: Application,var db: PostRoomDb) : AsyncTask<Void, Void, Void>() {
         override fun doInBackground(vararg p0: Void?): Void? {
             Log.d("Nishant", "Deleting Data")
-            val db = PostRoomDb.getDatabase(application)
+             db = PostRoomDb.getDatabase(application)
             db.postDao().deleteAll()
             return null
         }

@@ -7,21 +7,26 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepose: UserInterface.UserModel {
+class UserRepose : UserInterface.UserModel {
 
 
-    private val retrofitInterface:RetrofitInterface = RetrofitClient.getRetrofit().create(RetrofitInterface::class.java)
+    private val retrofitInterface: RetrofitInterface =
+        RetrofitClient.getRetrofit().create(RetrofitInterface::class.java)
 
-    override fun getUser(emailId : String,presenter: UserInterface.UserPresenter){
+    override fun getUser(emailId: String, presenter: UserInterface.UserPresenter) {
 
         val call = retrofitInterface.getUsers()
+
         call.enqueue(object : Callback<List<User>> {
+
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                if(!response.isSuccessful){
+
+                if (!response.isSuccessful) {
                     presenter.responseNotSuccessful(response.code())
                     return
                 }
-                response.body()?.let { presenter.handleSuccessResponse(it,emailId) }
+
+                response.body()?.let { presenter.handleSuccessResponse(it, emailId) }
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {

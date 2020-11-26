@@ -1,16 +1,22 @@
 package com.example.projectpoc.sessionManager
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import com.example.projectpoc.post.postContract.PostInterface
+import com.example.projectpoc.post.postDb.PostDbHelper
+import com.example.projectpoc.user.userView.MainActivity
 
 class UserSessionManager(var context: Context) {
     private var pref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private var PRIVATE_MODE: Int = 0
+    private var modelLocal: PostInterface.LocalDbPost
 
 
     init {
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+        modelLocal = PostDbHelper(context)
     }
 
     companion object {
@@ -35,6 +41,9 @@ class UserSessionManager(var context: Context) {
         editor = pref.edit()
         editor.clear()
         editor.apply()
+        modelLocal.delData()
+        val intent = Intent(context, MainActivity::class.java)
+        context.startActivity(intent)
     }
 
     fun getUserDetails(): Int {

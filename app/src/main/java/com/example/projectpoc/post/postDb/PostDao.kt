@@ -1,4 +1,4 @@
-package com.example.projectpoc.post.localDbForPost
+package com.example.projectpoc.post.postDb
 
 import androidx.room.Dao
 import androidx.room.Insert

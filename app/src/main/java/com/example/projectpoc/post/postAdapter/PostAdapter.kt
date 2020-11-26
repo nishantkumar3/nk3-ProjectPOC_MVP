@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
 import com.example.projectpoc.post.postCellClickListener.PostCellClickListener
-import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.post.postModel.PostResponse
 
-class PostAdapter(private val posts:List<Post>, private val postCellClickListener: PostCellClickListener):RecyclerView.Adapter<PostAdapter.PostViewHolder> (){
+class PostAdapter(private val postResponses:List<PostResponse>, private val postCellClickListener: PostCellClickListener):RecyclerView.Adapter<PostAdapter.PostViewHolder> (){
     class PostViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         val id: TextView = itemView.findViewById(R.id.postId)
         val title: TextView = itemView.findViewById(R.id.postTitle)
@@ -22,18 +22,18 @@ class PostAdapter(private val posts:List<Post>, private val postCellClickListene
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.id.text = posts[position].id.toString()
-        holder.title.text = posts[position].title
-        holder.body.text = posts[position].body
+        holder.id.text = postResponses[position].id.toString()
+        holder.title.text = postResponses[position].title
+        holder.body.text = postResponses[position].body
 
 
         holder.itemView.setOnClickListener {
-            postCellClickListener.onCellClickListener(posts[position].id)
+            postCellClickListener.onCellClickListener(postResponses[position].id)
         }
 
     }
 
     override fun getItemCount(): Int {
-        return posts.size
+        return postResponses.size
     }
 }

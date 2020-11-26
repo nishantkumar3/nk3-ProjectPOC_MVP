@@ -13,18 +13,17 @@ class PostApi: PostInterface.PostModel {
 
     override fun getPostList(userId: Int?,postPresenter: PostInterface.PostPresenter){
 
-        val call : Call<List<Post>>? = userId?.let { retrofitInterface.getPosts(it) }
-        call?.enqueue(object : Callback<List<Post>>{
-            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+        val call : Call<List<PostResponse>>? = userId?.let { retrofitInterface.getPosts(it) }
+        call?.enqueue(object : Callback<List<PostResponse>>{
+            override fun onResponse(call: Call<List<PostResponse>>, response: Response<List<PostResponse>>) {
                 if(!response.isSuccessful){
                     postPresenter.responseNotSuccessful(response.code())
                     return
                 }
-               // response.body()?.let { postPresenter.savePostToDb(it) }
                 response.body()?.let { postPresenter.handleSuccessResponse(it) }
             }
 
-            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PostResponse>>, t: Throwable) {
                 postPresenter.handleFailure(t)
             }
         })

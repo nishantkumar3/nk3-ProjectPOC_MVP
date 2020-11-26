@@ -2,9 +2,9 @@ package com.example.projectpoc.post.postPresenter
 
 import android.content.Context
 import android.widget.Toast
-import com.example.projectpoc.post.localDbForPost.LocalDbRepose
+import com.example.projectpoc.post.postDb.PostDbHelper
 import com.example.projectpoc.post.postContract.PostInterface
-import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.post.postModel.PostResponse
 import com.example.projectpoc.post.postModel.PostApi
 import com.example.projectpoc.post.postRepository.PostRepository
 import com.example.projectpoc.utility.CheckInternet
@@ -14,7 +14,7 @@ class PostPresenter(var context: Context, postView: PostInterface.PostDataView) 
 
     private val view: PostInterface.PostDataView = postView
     private val model: PostInterface.PostModel = PostApi()
-    private val modelLocal: PostInterface.LocalDbPost = LocalDbRepose(context)
+    private val modelLocal: PostInterface.LocalDbPost = PostDbHelper(context)
     private lateinit var checkInternet: CheckInternet
     private val postRepository  = PostRepository()
 
@@ -33,10 +33,10 @@ class PostPresenter(var context: Context, postView: PostInterface.PostDataView) 
     }
 
 
-    override fun handleSuccessResponse(posts: List<Post>) {
-        view.handleSuccess(posts)
+    override fun handleSuccessResponse(postResponses: List<PostResponse>) {
+        view.handleSuccess(postResponses)
       //  modelLocal.delData()
-        modelLocal.savePost(posts)
+        modelLocal.savePost(postResponses)
     }
 
     override fun handleFailure(t: Throwable) {
@@ -48,8 +48,8 @@ class PostPresenter(var context: Context, postView: PostInterface.PostDataView) 
     }
 
 
-    override fun handlePostFromDb(posts: List<Post>) {
-        view.handleSuccess(posts)
+    override fun handlePostFromDb(postResponses: List<PostResponse>) {
+        view.handleSuccess(postResponses)
     }
 
 }

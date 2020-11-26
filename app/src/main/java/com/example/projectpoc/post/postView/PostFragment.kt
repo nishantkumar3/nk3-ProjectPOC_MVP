@@ -12,7 +12,7 @@ import com.example.projectpoc.R
 import com.example.projectpoc.post.postAdapter.PostAdapter
 import com.example.projectpoc.post.postCellClickListener.PostCellClickListener
 import com.example.projectpoc.post.postContract.PostInterface
-import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.post.postModel.PostResponse
 import com.example.projectpoc.post.postPresenter.PostPresenter
 import com.example.projectpoc.sessionManager.UserSessionManager
 import com.example.projectpoc.comment.commentView.CommentFragment
@@ -42,9 +42,9 @@ class PostFragment : Fragment(), PostInterface.PostDataView, PostCellClickListen
     }
 
 
-    override fun handleSuccess(posts: List<Post>) {
+    override fun handleSuccess(postResponses: List<PostResponse>) {
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
-        recyclerView.adapter = PostAdapter(posts, this)
+        recyclerView.adapter = PostAdapter(postResponses, this)
 
     }
 

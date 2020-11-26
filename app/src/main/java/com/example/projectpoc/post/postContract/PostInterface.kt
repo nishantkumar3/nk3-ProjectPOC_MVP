@@ -1,20 +1,20 @@
 package com.example.projectpoc.post.postContract
 
-import com.example.projectpoc.post.postModel.Post
+import com.example.projectpoc.post.postModel.PostResponse
 
 interface PostInterface {
     interface PostDataView {
-        fun handleSuccess(posts: List<Post>)
+        fun handleSuccess(postResponses: List<PostResponse>)
         fun showFailureMessage(t:Throwable)
         fun showResponseCode(responseCode: Int)
     }
 
     interface PostPresenter {
         fun getPostData(userId: Int?)
-        fun handleSuccessResponse(posts: List<Post>)
+        fun handleSuccessResponse(postResponses: List<PostResponse>)
         fun handleFailure(t: Throwable)
         fun responseNotSuccessful(responseCode : Int)
-        fun handlePostFromDb(posts: List<Post>)
+        fun handlePostFromDb(postResponses: List<PostResponse>)
     }
 
     interface PostModel {
@@ -23,7 +23,7 @@ interface PostInterface {
     }
 
     interface LocalDbPost{
-        fun savePost(posts: List<Post>)
+        fun savePost(postResponses: List<PostResponse>)
         fun retrievePosts(postPresenter: PostPresenter)
         fun delData()
     }

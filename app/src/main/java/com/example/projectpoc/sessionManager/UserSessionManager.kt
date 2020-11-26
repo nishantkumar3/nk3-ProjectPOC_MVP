@@ -3,15 +3,15 @@ package com.example.projectpoc.sessionManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.example.projectpoc.post.postContract.PostInterface
-import com.example.projectpoc.post.postDb.PostDbHelper
-import com.example.projectpoc.user.userView.MainActivity
+import com.example.projectpoc.post.PostContract
+import com.example.projectpoc.post.model.postroomdb.PostDbHelper
+import com.example.projectpoc.user.MainActivity
 
 class UserSessionManager(var context: Context) {
     private var pref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private var PRIVATE_MODE: Int = 0
-    private var modelLocal: PostInterface.LocalDbPost
+    private var modelLocal: PostContract.LocalDbPost
 
 
     init {

@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectpoc.R
 import com.example.projectpoc.post.DashboardActivity
-import com.example.projectpoc.sessionManager.UserSessionManager
+import com.example.projectpoc.sessionmanager.UserSessionManager
 import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity(), UserContract.UserView {

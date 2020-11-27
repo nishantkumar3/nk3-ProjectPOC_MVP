@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#FFFFFF"
     app:cardCornerRadius="20dp"
     app:cardElevation="5dp"
     app:contentPadding="8dp">
@@ -14,13 +13,15 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/ID"
+            android:id="@+id/id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/id"
+            android:textStyle="bold|italic"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,20 +33,24 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ID"
+            android:textStyle="bold|italic"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/id"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ID" />
+            app:layout_constraintStart_toEndOf="@+id/id" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/name"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ID" />
+            app:layout_constraintTop_toBottomOf="@+id/id" />
 
         <TextView
             android:id="@+id/commentName"
@@ -55,9 +60,11 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBaseline_toBaselineOf="@+id/name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView22" />
+            app:layout_constraintStart_toEndOf="@+id/name" />
 
         <TextView
             android:id="@+id/commentEmail"
@@ -68,27 +75,32 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView25"
+            app:layout_constraintStart_toEndOf="@+id/cmntEmail"
             app:layout_constraintTop_toBottomOf="@+id/commentName" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/cmntEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:text="@string/Email"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
             app:layout_constraintBaseline_toBaselineOf="@+id/commentEmail"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:text="@string/body"
+            android:textStyle="bold|italic"
+            android:textSize="16sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/commentBody"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -102,9 +114,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView26"
+            app:layout_constraintStart_toEndOf="@+id/body"
             app:layout_constraintTop_toBottomOf="@+id/commentEmail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

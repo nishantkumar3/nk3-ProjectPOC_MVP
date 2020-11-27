@@ -6,7 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectpoc.R
-import com.example.projectpoc.sessionManager.UserSessionManager
+import com.example.projectpoc.sessionmanager.UserSessionManager
 
 class DashboardActivity : AppCompatActivity() {
 

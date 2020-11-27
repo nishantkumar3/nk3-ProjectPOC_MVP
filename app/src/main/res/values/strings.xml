@@ -8,8 +8,9 @@
     <string name="invalidEmail">Email id is not valid.</string>
     <string name="emailNotFound">Email id not found.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="id">ID:</string>
-    <string name="body">BODY:</string>
     <string name="Email">EMAIL:</string>
     <string name="name">NAME:</string>
+    <string name="id">ID:</string>
+    <string name="body">BODY:</string>
+    <string name="title">TITLE:</string>
 </resources>

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
-import com.example.projectpoc.sessionManager.UserSessionManager
+import com.example.projectpoc.sessionmanager.UserSessionManager
 import com.example.projectpoc.comment.CommentFragment
 import com.example.projectpoc.constants.Constant
 import com.example.projectpoc.post.postmodel.Post

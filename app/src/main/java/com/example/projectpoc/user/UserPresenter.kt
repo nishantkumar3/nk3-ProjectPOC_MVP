@@ -2,7 +2,7 @@ package com.example.projectpoc.user
 
 import android.content.Context
 import com.example.projectpoc.constants.Constant
-import com.example.projectpoc.sessionManager.UserSessionManager
+import com.example.projectpoc.sessionmanager.UserSessionManager
 import com.example.projectpoc.user.model.User
 import com.example.projectpoc.user.model.UserApi
 

@@ -1,4 +1,4 @@
-package com.example.projectpoc.sessionManager
+package com.example.projectpoc.sessionmanager
 
 import android.content.Context
 import android.content.Intent

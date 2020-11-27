@@ -10,13 +10,13 @@ import com.example.projectpoc.sessionManager.UserSessionManager
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var userSessionManager:UserSessionManager
-
+    private lateinit var userSessionManager: UserSessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
-        userSessionManager=UserSessionManager(this)
+
+        userSessionManager = UserSessionManager(this)
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -25,6 +25,7 @@ class DashboardActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)

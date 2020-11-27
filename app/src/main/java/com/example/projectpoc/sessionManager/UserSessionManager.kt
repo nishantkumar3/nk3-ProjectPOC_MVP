@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import com.example.projectpoc.post.PostContract
-import com.example.projectpoc.post.model.postroomdb.PostDbHelper
+import com.example.projectpoc.post.postmodel.postroomdb.PostDbHelper
 import com.example.projectpoc.user.MainActivity
 
 class UserSessionManager(var context: Context) {
@@ -46,7 +46,7 @@ class UserSessionManager(var context: Context) {
         context.startActivity(intent)
     }
 
-    fun getUserDetails(): Int {
+    fun getUserId(): Int {
         return pref.getInt(KEY_USERID, 0)
     }
 

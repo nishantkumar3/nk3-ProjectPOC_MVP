@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
-import com.example.projectpoc.comment.model.Comment
+import com.example.projectpoc.comment.commentmodel.Comment
 
-class CommentAdapter(private val comments: List<Comment>) : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+class CommentAdapter(private val comments: List<Comment>) :
+    RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val id: TextView = itemView.findViewById(R.id.commentId)
         val name: TextView = itemView.findViewById(R.id.commentName)
@@ -17,7 +19,8 @@ class CommentAdapter(private val comments: List<Comment>) : RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.comment_single_row, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.comment_single_row, parent, false)
         return ViewHolder(view)
     }
 

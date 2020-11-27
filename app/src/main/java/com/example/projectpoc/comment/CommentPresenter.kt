@@ -1,15 +1,16 @@
 package com.example.projectpoc.comment
 
-import com.example.projectpoc.comment.model.Comment
-import com.example.projectpoc.comment.model.CommentUtility
+import com.example.projectpoc.comment.commentmodel.Comment
+import com.example.projectpoc.comment.commentmodel.CommentApi
 
-class CommentPresenter(commentVIew: CommentInterface.CommentVIew): CommentInterface.CommentPresenter{
+class CommentPresenter(commentVIew: CommentInterface.CommentVIew) :
+    CommentInterface.CommentPresenter {
 
-    private val view: CommentInterface.CommentVIew=commentVIew
-    private val model: CommentInterface.CommentModel= CommentUtility()
+    private val view: CommentInterface.CommentVIew = commentVIew
+    private val commentApi: CommentInterface.CommentModel = CommentApi()
 
     override fun networkCallForComment(postId: Int?) {
-        model.getCommentList(postId,this)
+        commentApi.getCommentList(postId, this)
     }
 
     override fun handleSuccessResponse(comments: List<Comment>) {

@@ -1,4 +1,4 @@
-package com.example.projectpoc.post.model.postroomdb
+package com.example.projectpoc.post.postmodel.postroomdb
 
 import android.content.Context
 import androidx.room.Database

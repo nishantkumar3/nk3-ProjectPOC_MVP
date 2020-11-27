@@ -1,18 +1,17 @@
 package com.example.projectpoc.post
 
 import android.content.Context
-import android.widget.Toast
-import com.example.projectpoc.post.model.PostApi
-import com.example.projectpoc.post.model.PostResponse
-import com.example.projectpoc.post.model.postroomdb.PostDbHelper
+import com.example.projectpoc.post.postmodel.PostApi
+import com.example.projectpoc.post.postmodel.Post
+import com.example.projectpoc.post.postmodel.postroomdb.PostDbHelper
 import com.example.projectpoc.utility.CheckInternet
 
 class PostPresenter(var context: Context, postView: PostContract.PostDataView) :
     PostContract.PostPresenter {
 
     private val view: PostContract.PostDataView = postView
-    private val model: PostContract.PostModel = PostApi()
-    private val modelLocal: PostContract.LocalDbPost = PostDbHelper(context)
+    private val postApi: PostContract.PostModel = PostApi()
+    private val postDbHelper: PostContract.LocalDbPost = PostDbHelper(context)
     private lateinit var checkInternet: CheckInternet
 
 
@@ -21,17 +20,16 @@ class PostPresenter(var context: Context, postView: PostContract.PostDataView) :
         checkInternet = CheckInternet(context)
 
         if (checkInternet.isConnected()) {
-            model.getPostList(userId, this)
+            postApi.getPostList(userId, this)
         } else {
-            modelLocal.retrievePosts(this)
-            Toast.makeText(context, "Mobile data is Off", Toast.LENGTH_SHORT).show()
+            postDbHelper.retrievePosts(this)
         }
     }
 
 
-    override fun handleSuccessResponse(postResponses: List<PostResponse>) {
-        view.handleSuccess(postResponses)
-        modelLocal.savePost(postResponses)
+    override fun handleSuccessResponse(postRespons: List<Post>) {
+        view.handleSuccess(postRespons)
+        postDbHelper.savePost(postRespons)
     }
 
     override fun handleFailure(t: Throwable) {
@@ -43,8 +41,8 @@ class PostPresenter(var context: Context, postView: PostContract.PostDataView) :
     }
 
 
-    override fun handlePostFromDb(postResponses: List<PostResponse>) {
-        view.handleSuccess(postResponses)
+    override fun handlePostFromDb(postRespons: List<Post>) {
+        view.handleSuccess(postRespons)
     }
 
 }

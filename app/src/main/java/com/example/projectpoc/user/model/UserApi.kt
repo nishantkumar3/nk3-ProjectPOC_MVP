@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepose : UserContract.UserModel {
+class UserApi : UserContract.UserModel {
 
 
     private val retrofitInterface: RetrofitInterface =

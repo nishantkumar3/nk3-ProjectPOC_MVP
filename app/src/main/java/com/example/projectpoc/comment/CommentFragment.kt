@@ -1,21 +1,21 @@
 package com.example.projectpoc.comment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectpoc.R
-import com.example.projectpoc.comment.model.Comment
+import com.example.projectpoc.comment.commentmodel.Comment
+import com.example.projectpoc.constants.Constant
 
 
 class CommentFragment : Fragment(), CommentInterface.CommentVIew {
 
-    private var presenter : CommentPresenter?=null
+    private var presenter: CommentPresenter? = null
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -23,16 +23,15 @@ class CommentFragment : Fragment(), CommentInterface.CommentVIew {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val view:View=inflater.inflate(R.layout.fragment_comment, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_comment, container, false)
         recyclerView = view.findViewById(R.id.commentRecyclerView)
 
         presenter = CommentPresenter(this)
 
-        Log.d("nish","In comment Fragment")
 
-        var postId: Int?= 0
-        if(arguments?.getInt("POST_ID")!=null){
-             postId = arguments?.getInt("POST_ID")
+        var postId: Int? = 0
+        if (arguments?.getInt(Constant.POST_ID) != null) {
+            postId = arguments?.getInt(Constant.POST_ID)
         }
 
         presenter?.networkCallForComment(postId)
@@ -41,7 +40,7 @@ class CommentFragment : Fragment(), CommentInterface.CommentVIew {
     }
 
     override fun handleSuccess(comments: List<Comment>) {
-        recyclerView.layoutManager = GridLayoutManager(activity?.applicationContext,2)
+        recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
         recyclerView.adapter = CommentAdapter(comments)
     }
 

@@ -1,4 +1,4 @@
-package com.example.projectpoc.comment.commentroomdatabase
+package com.example.projectpoc.comment.commentmodel.commentroomdatabase
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

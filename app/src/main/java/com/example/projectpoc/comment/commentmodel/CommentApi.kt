@@ -1,4 +1,4 @@
-package com.example.projectpoc.comment.model
+package com.example.projectpoc.comment.commentmodel
 
 import com.example.projectpoc.comment.CommentInterface
 import com.example.projectpoc.retrofit.RetrofitClient
@@ -7,17 +7,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CommentUtility: CommentInterface.CommentModel {
+class CommentApi : CommentInterface.CommentModel {
     private val retrofitInterface: RetrofitInterface = RetrofitClient.getRetrofit().create(
-        RetrofitInterface::class.java)
+        RetrofitInterface::class.java
+    )
 
     override fun getCommentList(postId: Int?, commentPresenter: CommentInterface.CommentPresenter) {
         val call: Call<List<Comment>> = retrofitInterface.getComments(postId)
 
-        call.enqueue(object :Callback<List<Comment>>{
+        call.enqueue(object : Callback<List<Comment>> {
             override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
 
-                if(!response.isSuccessful){
+                if (!response.isSuccessful) {
                     commentPresenter.responseNotSuccessful(response.code())
                     return
                 }

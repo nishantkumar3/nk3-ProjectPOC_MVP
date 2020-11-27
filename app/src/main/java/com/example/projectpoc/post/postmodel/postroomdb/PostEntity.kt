@@ -1,4 +1,4 @@
-package com.example.projectpoc.post.model.postroomdb
+package com.example.projectpoc.post.postmodel.postroomdb
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

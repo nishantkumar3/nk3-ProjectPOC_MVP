@@ -1,4 +1,4 @@
-package com.example.projectpoc.comment.model
+package com.example.projectpoc.comment.commentmodel
 
 data class Comment(
     val id: Int,

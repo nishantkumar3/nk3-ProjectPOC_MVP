@@ -1,22 +1,22 @@
 package com.example.projectpoc.user
 
 import android.content.Context
-import com.example.projectpoc.interfaces.Constant
+import com.example.projectpoc.constants.Constant
 import com.example.projectpoc.sessionManager.UserSessionManager
 import com.example.projectpoc.user.model.User
-import com.example.projectpoc.user.model.UserRepose
+import com.example.projectpoc.user.model.UserApi
 
 class UserPresenter(var context: Context, userView: UserContract.UserView) :
     UserContract.UserPresenter {
 
     private var view: UserContract.UserView = userView
-    private var model: UserContract.UserModel = UserRepose()
+    private var userApi: UserContract.UserModel = UserApi()
     private lateinit var userSessionManager: UserSessionManager
 
 
     override fun handleLogin(emailId: String) {
         if (validateEmail(emailId))
-            model.getUser(emailId, this)
+            userApi.getUser(emailId, this)
     }
 
 

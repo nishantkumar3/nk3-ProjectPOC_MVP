@@ -12,7 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity(), UserContract.UserView {
 
-    private lateinit var presenter: UserPresenter
+    private lateinit var userPresenter: UserPresenter
     private lateinit var loginButton: Button
     private lateinit var inputEmail: TextInputLayout
     private lateinit var userSessionManager: UserSessionManager
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), UserContract.UserView {
         setContentView(R.layout.activity_main)
 
 
-        presenter = UserPresenter(applicationContext, this)
+        userPresenter = UserPresenter(applicationContext, this)
         userSessionManager = UserSessionManager(applicationContext)
 
         if (userSessionManager.isLoggedIn()) {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), UserContract.UserView {
         loginButton.setOnClickListener {
 
             val emailId: String = inputEmail.editText?.text.toString().trim()
-            presenter.handleLogin(emailId)
+            userPresenter.handleLogin(emailId)
         }
 
     }

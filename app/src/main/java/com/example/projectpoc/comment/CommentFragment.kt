@@ -13,7 +13,7 @@ import com.example.projectpoc.comment.commentmodel.Comment
 import com.example.projectpoc.constants.Constant
 
 
-class CommentFragment : Fragment(), CommentInterface.CommentVIew {
+class CommentFragment : Fragment(), CommentContract.CommentVIew {
 
     private var presenter: CommentPresenter? = null
     private lateinit var recyclerView: RecyclerView

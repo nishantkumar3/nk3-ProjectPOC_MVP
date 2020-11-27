@@ -3,11 +3,11 @@ package com.example.projectpoc.comment
 import com.example.projectpoc.comment.commentmodel.Comment
 import com.example.projectpoc.comment.commentmodel.CommentApi
 
-class CommentPresenter(commentVIew: CommentInterface.CommentVIew) :
-    CommentInterface.CommentPresenter {
+class CommentPresenter(commentVIew: CommentContract.CommentVIew) :
+    CommentContract.CommentPresenter {
 
-    private val view: CommentInterface.CommentVIew = commentVIew
-    private val commentApi: CommentInterface.CommentModel = CommentApi()
+    private val view: CommentContract.CommentVIew = commentVIew
+    private val commentApi: CommentContract.CommentModel = CommentApi()
 
     override fun networkCallForComment(postId: Int?) {
         commentApi.getCommentList(postId, this)

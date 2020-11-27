@@ -2,7 +2,7 @@ package com.example.projectpoc.comment
 
 import com.example.projectpoc.comment.commentmodel.Comment
 
-interface CommentInterface {
+interface CommentContract {
     interface CommentVIew {
         fun handleSuccess(comments: List<Comment>)
         fun showFailureMessage(t: Throwable)

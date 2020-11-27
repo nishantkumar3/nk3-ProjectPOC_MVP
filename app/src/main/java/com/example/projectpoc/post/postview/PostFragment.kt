@@ -1,4 +1,4 @@
-package com.example.projectpoc.post
+package com.example.projectpoc.post.postview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,10 @@ import com.example.projectpoc.R
 import com.example.projectpoc.sessionmanager.UserSessionManager
 import com.example.projectpoc.comment.CommentFragment
 import com.example.projectpoc.constants.Constant
+import com.example.projectpoc.post.PostAdapter
+import com.example.projectpoc.post.PostCellClickListener
+import com.example.projectpoc.post.PostContract
+import com.example.projectpoc.post.PostPresenter
 import com.example.projectpoc.post.postmodel.Post
 
 

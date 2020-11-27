@@ -1,4 +1,4 @@
-package com.example.projectpoc.post
+package com.example.projectpoc.post.postview
 
 import android.os.Bundle
 import android.view.Menu
